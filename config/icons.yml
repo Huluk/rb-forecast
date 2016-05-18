@@ -1,0 +1,24 @@
+---
+clear-day: ☀️
+cear-night: ⭐
+rain: 🌧
+snow: 🌨
+sleet: 🌨
+wind: 🌬
+fog: 🌫
+cloudy: ☁️
+partly-cloudy-day: ⛅
+partly-cloudy-night: ⛅
+hail: ⚠️
+thunderstorm: 🌩
+tornado: ⚠️
+default: ⚠️
+moon:
+    - 🌑
+    - 🌒
+    - 🌓
+    - 🌔
+    - 🌕
+    - 🌖
+    - 🌗
+    - 🌘

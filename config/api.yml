@@ -1,0 +1,55 @@
+--- # https://developer.forecast.io/docs/v2
+all_datablocks:
+    - summary
+    - icon
+all_datapoints:
+    - time
+    - summary
+    - icon
+    - precipIntensity # +precipIntensityError
+    - precipProbability # +precipProbabilityError
+    - precipType
+    - dewPoint # +dewPointError
+    - windSpeed # +windSpeedError
+    - windBearing #+windBearingError
+    - cloudCover #+cloudCoverError
+    - humidity #+humidityError
+    - pressure #+pressureError
+    - visibility #+visibilityError
+    - ozone #+ozoneError
+currently_or_hourly:
+    - temperature #+temperatureError
+    - apparentTemperature #+apparentTemperatureError
+hourly_or_daily:
+    - precipAccumulation #+precipAccumulationError
+currently:
+    - nearestStormDistance #+nearestStormDistanceError
+    - nearestStormBearing #+nearestStormBearingError
+daily:
+    - sunriseTime
+    - sunsetTime
+    - moonPhase
+    - precipIntensityMax #+precipIntensityMaxError
+    - precipIntensityMaxTime
+    - temperatureMin #+temperatureMinError
+    - temperatureMinTime
+    - temperatureMax #+temperatureMaxError
+    - temperatureMaxTime
+    - apparentTemperatureMin #+apparentTemperatureMinError
+    - apparentTemperatureMinTime
+    - apparentTemperatureMax #+apparentTemperatureMaxError
+    - apparentTemperatureMaxTime
+alerts:
+    - title
+    - expires
+    - description
+    - uri
+flags:
+    - darksky-unavailable
+    - darksky-stations
+    - isd-stations
+    - lamp-stations
+    - metar-stations
+    - metno-license
+    - sources
+    - units

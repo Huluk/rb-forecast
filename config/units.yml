@@ -1,0 +1,33 @@
+---
+us:
+    :distance: miles
+    :precipIntensity: in/h
+    :precipAccumulation: in
+    :temperature: °F
+    :speed: miles/h
+    :pressure: mbar
+    :ozone: DU
+si:
+    :distance: km
+    :precipIntensity: mm/h
+    :precipAccumulation: cm
+    :temperature: °C
+    :speed: m/s
+    :pressure: hPa
+    :ozone: DU
+ca:
+    :distance: km
+    :precipIntensity: mm/h
+    :precipAccumulation: cm
+    :temperature: °C
+    :speed: km/h
+    :pressure: hPa
+    :ozone: DU
+uk2:
+    :distance: miles
+    :precipIntensity: mm/h
+    :precipAccumulation: cm
+    :temperature: °C
+    :speed: miles/h
+    :pressure: hPa
+    :ozone: DU
