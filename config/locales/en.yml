@@ -9,6 +9,7 @@ en:
       base: ALERT
   coordinates: "lat: %f, long: %f"
   wind: "Wind: %.0f %s from %s"
+  default_value: "N/A"
   precipitation:
       default: precipitation
   storm:

@@ -101,7 +101,7 @@ class Forecast
   private
 
   def make_flat_data(forecast)
-    @flat_data = Hash.new('N/A')
+    @flat_data = Hash.new(I18n.t('default_value'))
     set_flat_data_defaults if @@set_flat_data_defaults
     recursive_flat_data([], forecast)
   end
@@ -137,14 +137,29 @@ class Forecast
   end
 
   def set_flat_data_defaults
-    warn(NotImplementedError, "support for Ruby versions < 2.3.0 not implemented yet")
     # ruby versions prior to 2.3.0 do not support hash default arguments in sprintf.
     # this means that this app will crash if the output format specification
     # asks for attributes which are not present in the received data.
-    # a fix for this would be to initialize the whole data structure with
-    # default values. Possible attributes are listed in config/api.yml, but
-    # currently not used in this way.
-    # structure = Hashie::Mash.new(YAML.load(File.read(File.join(@@data_dir, 'api.yml'))))
+    # we initialise the hash with all values listed in the api-specification.
+    layout = Hashie::Mash.new(YAML.load(File.read(File.join(@@data_dir, 'api.yml'))))
+    set_flat_data_default([], layout['structure'], layout)
+  end
+
+  def set_flat_data_default(keys, object, layout)
+    if object.kind_of? Hash
+      object.each_pair do |key, value|
+        set_flat_data_default(keys + [key], value, layout)
+      end
+    elsif object.kind_of? Array
+      size, elem = object
+      0.upto(size).each do |i|
+        set_flat_data_default(keys + [i.to_s], elem, layout)
+      end
+    else
+      layout[object].each do |entry|
+        @flat_data[to_key(keys + [entry])] = I18n.t('default_value')
+      end
+    end
   end
 
   def to_key(key_parts)

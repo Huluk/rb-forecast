@@ -21,6 +21,6 @@ file can consist of any text and references to the data, as exemplified in
 rb-forecast needs the gems `hashie` and `i18n`, which you can install using
 `gem install hashie` and `gem install i18n`, respectively. The gem
 `colorize` is recommended for colored weather alerts. rb-forecast also
-requires ruby version 2.3.0 -- previous versions may crash if an unspecified
-attribute is requested in the format file. Sorry for that, I may implement
-support for earlier versions later.
+requires ruby version 2.0 – although I recommend version 2.3.0, because
+everything before that does not support sprintf hash default values and uses
+a workaround which may not keep up with API changes.

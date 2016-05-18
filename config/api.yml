@@ -1,8 +1,20 @@
 --- # https://developer.forecast.io/docs/v2
-all_datablocks:
+structure:
+    currently: currently
+    minutely:
+        - 60
+        - minutely
+    hourly:
+        - 48
+        - hourly
+    daily:
+        - 7
+        - daily
+datablock:
     - summary
     - icon
-all_datapoints:
+currently:
+    # all datapoints:
     - time
     - summary
     - icon
@@ -17,15 +29,71 @@ all_datapoints:
     - pressure #+pressureError
     - visibility #+visibilityError
     - ozone #+ozoneError
-currently_or_hourly:
+    # non-daily:
     - temperature #+temperatureError
     - apparentTemperature #+apparentTemperatureError
-hourly_or_daily:
-    - precipAccumulation #+precipAccumulationError
-currently:
+    # currently only:
     - nearestStormDistance #+nearestStormDistanceError
     - nearestStormBearing #+nearestStormBearingError
+minutely:
+    # all datapoints:
+    - time
+    - summary
+    - icon
+    - precipIntensity # +precipIntensityError
+    - precipProbability # +precipProbabilityError
+    - precipType
+    - dewPoint # +dewPointError
+    - windSpeed # +windSpeedError
+    - windBearing #+windBearingError
+    - cloudCover #+cloudCoverError
+    - humidity #+humidityError
+    - pressure #+pressureError
+    - visibility #+visibilityError
+    - ozone #+ozoneError
+    # non-daily:
+    - temperature #+temperatureError
+    - apparentTemperature #+apparentTemperatureError
+hourly:
+    # all datapoints:
+    - time
+    - summary
+    - icon
+    - precipIntensity # +precipIntensityError
+    - precipProbability # +precipProbabilityError
+    - precipType
+    - dewPoint # +dewPointError
+    - windSpeed # +windSpeedError
+    - windBearing #+windBearingError
+    - cloudCover #+cloudCoverError
+    - humidity #+humidityError
+    - pressure #+pressureError
+    - visibility #+visibilityError
+    - ozone #+ozoneError
+    # non-daily:
+    - temperature #+temperatureError
+    - apparentTemperature #+apparentTemperatureError
+    # hourly or daily:
+    - precipAccumulation #+precipAccumulationError
 daily:
+    # all datapoints:
+    - time
+    - summary
+    - icon
+    - precipIntensity # +precipIntensityError
+    - precipProbability # +precipProbabilityError
+    - precipType
+    - dewPoint # +dewPointError
+    - windSpeed # +windSpeedError
+    - windBearing #+windBearingError
+    - cloudCover #+cloudCoverError
+    - humidity #+humidityError
+    - pressure #+pressureError
+    - visibility #+visibilityError
+    - ozone #+ozoneError
+    # hourly or daily:
+    - precipAccumulation #+precipAccumulationError
+    # daily only:
     - sunriseTime
     - sunsetTime
     - moonPhase
