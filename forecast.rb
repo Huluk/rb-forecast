@@ -2,7 +2,14 @@ require 'yaml'
 
 require 'rubygems'
 require 'hashie'
-require 'colorize'
+begin
+  require 'colorize'
+rescue LoadError
+  class String
+    def yellow() self; end
+    def red() self; end
+  end
+end
 require 'i18n' # internationalization
 # find default locales here:
 # https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale

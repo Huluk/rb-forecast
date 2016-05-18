@@ -7,7 +7,7 @@ to use it. You can run it with `./weather.rb --key <your-api-key> --loc
 decimal notation) instead.
 
 rb-forecast uses a Google API for location resolution. You can save your
-location as default using `--save`. 
+location and forecast.io API key as default using `--save all`. 
 
 ## Format
 
@@ -18,7 +18,9 @@ file can consist of any text and references to the data, as exemplified in
 
 ## Requirements
 
-rb-forecast needs the gem `hashie`, which you can install using `gem install
-hashie`. It also requires ruby version 2.3.0 -- previous versions may crash
-if an unspecified attribute is requested in the format file. Sorry for that,
-I may implement support for earlier versions later.
+rb-forecast needs the gems `hashie` and `i18n`, which you can install using
+`gem install hashie` and `gem install i18n`, respectively. The gem
+`colorize` is recommended for colored weather alerts. rb-forecast also
+requires ruby version 2.3.0 -- previous versions may crash if an unspecified
+attribute is requested in the format file. Sorry for that, I may implement
+support for earlier versions later.

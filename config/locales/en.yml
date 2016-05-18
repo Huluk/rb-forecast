@@ -52,7 +52,7 @@ en:
   time:
     am: am
     formats:
-      time: "%R %Z"
+      time: "%R"
       date: "%a, %-d %B"
       default: "%a, %-d %B %R %Z"
       rails_default: "%a, %d %b %Y %H:%M:%S %z"

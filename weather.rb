@@ -9,7 +9,7 @@ DEFAULT_OPTIONS = {
   language: 'en',
   units: 'auto',
   storm_warn_distance: 0,
-  save: false,
+  save: 0,
   format_file: File.join(Forecast.data_dir, 'format.txt')
 }
 CONFIG_FILE = File.join(Forecast.data_dir, 'config.yml')
@@ -19,6 +19,9 @@ if File.exist? CONFIG_FILE
 else
   $stderr.puts "warning: missing config file at #{CONFIG_FILE}"
 end
+
+SAVE_KEY = 2
+SAVE_LOCATION = 1
 
 options = Hashie::Mash.new(DEFAULT_OPTIONS.merge options)
  
@@ -45,8 +48,14 @@ optparse = OptionParser.new do|opts|
     options.format_file = path
   end
   
-  opts.on('-s', '--save', 'save location as default') do
-    options.save = true
+  opts.on('-s', '--save all/key/loc',
+          'save location, api-key, or both as default') do |obj|
+    options.save = case obj.downcase
+    when 'all','both' then SAVE_KEY | SAVE_LOCATION
+    when 'key','api-key' then SAVE_KEY
+    when 'loc','location' then SAVE_LOCATION
+    else raise(ArgumentError, "unknown --save argument `#{obj}'")
+    end
   end
 
   opts.on('-u', '--units',
@@ -63,6 +72,11 @@ end
 
 optparse.parse!
 options.location_file = File.join(Forecast.data_dir, 'location')
+options.key_file = File.join(Forecast.data_dir, 'api-key')
+if !options.api_key? && File.exist?(options.key_file)
+  options.api_key = File.read(options.key_file).chomp
+  options.save &= ~SAVE_KEY
+end
 # check options
 def validate(condition, message)
   if not condition
@@ -87,6 +101,10 @@ validate(File.exist?(options.format_file),
 
 options.format = File.read(options.format_file)
 
+if (options.save & SAVE_KEY) != 0
+  File.write(options.key_file, options.api_key)
+end
+
 # get coordinates by location
 if options.location?
   # TODO what about multiple locations?
@@ -96,13 +114,13 @@ if options.location?
 elsif options.longitude? && options.latitude?
   coords = Coordinate.new(options.latitude, options.longitude)
 else
-  options.save = false
+  options.save &= ~SAVE_LOCATION
   options.location, *coords = YAML.load(File.read(options.location_file))
   options.latitude, options.longitude = coords
   coords = Coordinate.new(*coords)
 end
 
-if options.save
+if (options.save & SAVE_LOCATION) != 0
   File.write(options.location_file,
              YAML.dump([options.location!, coords.latitude, coords.longitude]))
 end
