@@ -155,6 +155,7 @@ class Forecast
       0.upto(size).each do |i|
         set_flat_data_default(keys + [i.to_s], elem, layout)
       end
+      set_flat_data_default(keys, 'datablock', layout)
     else
       layout[object].each do |entry|
         @flat_data[to_key(keys + [entry])] = I18n.t('default_value')
