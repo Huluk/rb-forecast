@@ -6,7 +6,7 @@ High temperature of %{daily.0.temperatureMax.short}
  and a low of %{daily.0.temperatureMin}
  around %{daily.0.temperatureMinTime.hour}.\\
 Sunrise at %{daily.0.sunriseTime},
-sunset at %{daily.0.sunsetTime}.\\\\
+ sunset at %{daily.0.sunsetTime}.\\\\
 
                            %{currently.summary}\\
 TEMP          WIND          HUMIDITY      VISIBILITY    PRESSURE\\

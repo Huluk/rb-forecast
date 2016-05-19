@@ -124,7 +124,9 @@ class Forecast
           @flat_data[to_key(keys + ['long'])] = bearing(object, 'long')
           bearing(object, 'long')
         when @@units_regexp then unit_message(object, $&, keys)
-        when 'icon' then @@icons[object]
+        when 'icon'
+          @flat_data[to_key(keys + ['text'])] = object
+          @@icons[object]
         when 'moonPhase' then moon(object)
         when 'precipProbability'
           precipType = to_key(keys[0...-1] << 'precipType')

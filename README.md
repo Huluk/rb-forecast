@@ -32,7 +32,8 @@ the app allows access to `location`, `longitude`, `latitude`, `coordinates`,
 and `position`; the latter is the location or else the coordinates if no
 place name is available. All times have sub-attributes as listed in the
 matching localization file under the time attribute. Wind bearings and many
-numeric values are available in short and long format.
+numeric values are available in short and long format. Icons have an
+additional `text` format to access the original text.
 
 ## Format files
 

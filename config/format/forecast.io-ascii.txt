@@ -1,0 +1,27 @@
+%{position} %{currently.temperature.short}\\
+%{currently.summary}, Feels like %{currently.apparentTemperature.short}.
+\\\\
+
+Next Hour\\
+%{minutely.summary}\\\\
+
+Next 48 Hours\\
+%{hourly.summary}\\\\
+
+Next 7 Days\\
+%{daily.summary}\\\\
+
+Today %{daily.0.icon.text} %{daily.0.temperatureMin} -
+ %{daily.0.temperatureMax} %{daily.0.summary}\\
+%<daily.1.time.wday>5s %{daily.1.icon.text} %{daily.1.temperatureMin} -
+ %{daily.1.temperatureMax} %{daily.1.summary}\\
+%<daily.2.time.wday>5s %{daily.2.icon.text} %{daily.2.temperatureMin} -
+ %{daily.2.temperatureMax} %{daily.2.summary}\\
+%<daily.3.time.wday>5s %{daily.3.icon.text} %{daily.3.temperatureMin} -
+ %{daily.3.temperatureMax} %{daily.3.summary}\\
+%<daily.4.time.wday>5s %{daily.4.icon.text} %{daily.4.temperatureMin} -
+ %{daily.4.temperatureMax} %{daily.4.summary}\\
+%<daily.5.time.wday>5s %{daily.5.icon.text} %{daily.5.temperatureMin} -
+ %{daily.5.temperatureMax} %{daily.5.summary}\\
+%<daily.6.time.wday>5s %{daily.6.icon.text} %{daily.6.temperatureMin} -
+ %{daily.6.temperatureMax} %{daily.6.summary}\\
