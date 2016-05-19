@@ -1,0 +1,17 @@
+%{currently.time}\\\\
+
+%{daily.0.summary}\\
+High temperature of %{daily.0.temperatureMax.short}
+ around %{daily.0.temperatureMaxTime.hour}
+ and a low of %{daily.0.temperatureMin}
+ around %{daily.0.temperatureMinTime.hour}.\\
+Sunrise at %{daily.0.sunriseTime},
+sunset at %{daily.0.sunsetTime}.\\\\
+
+                           %{currently.summary}\\
+TEMP          WIND          HUMIDITY      VISIBILITY    PRESSURE\\
+%<currently.temperature.short>-14s
+%<currently.windBearing.short>-3s %<currently.windSpeed.short>-10s
+%<currently.pressure.short>-14s
+%<currently.visibility.short>-14s
+%<currently.pressure.short>s

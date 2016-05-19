@@ -16,23 +16,23 @@ en:
     near: "There is a storm %.0f %s from %s in direction %s"
   darksky:
     offline: "Dark Sky network is offline: %s\n"
-  unit_message: "%1$s %2$s"
+  unit_message: "%1$s%2$s"
   percent: "%g%%"
   units:
-    miles: miles
-    in/h: in/h
-    in: in
-    °F: °F
-    miles/h: mph
-    mbar: mbar
-    DU: DU
-    km: km
-    mm/h: mm/h
-    cm: cm
-    °C: °C
-    m/s: m/s
-    hPa: hPa
-    km/h: km/h
+    miles: " miles"
+    in/h: " in/h"
+    in: " in"
+    °F: "°F"
+    miles/h: " mph"
+    mbar: " mbar"
+    DU: " DU"
+    km: " km"
+    mm/h: " mm/h"
+    cm: " cm"
+    °C: "°C"
+    m/s: " m/s"
+    hPa: " hPa"
+    km/h: " km/h"
   bearing:
     E:
       short: E
@@ -90,7 +90,7 @@ en:
       time: "%R"
       hour: "%-l %p"
       date: "%a, %-d %B"
-      default: "%a, %-d %B %R %Z"
+      default: "%a, %-d %B %R"
       rails_default: "%a, %d %b %Y %H:%M:%S %z"
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
