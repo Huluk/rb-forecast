@@ -1,0 +1,90 @@
+Weather %{position}\\\\
+
+%<daily.0.time.wday>-11s
+%<daily.1.time.wday>-11s
+%<daily.2.time.wday>-11s
+%<daily.3.time.wday>-11s
+%<daily.4.time.wday>-11s
+\\
+%<daily.0.icon>s  %<daily.0.temperatureMin.short>-8s
+%<daily.1.icon>s  %<daily.1.temperatureMin.short>-8s
+%<daily.2.icon>s  %<daily.2.temperatureMin.short>-8s
+%<daily.3.icon>s  %<daily.3.temperatureMin.short>-8s
+%<daily.4.icon>s  %<daily.4.temperatureMin.short>-8s
+\\
+   %<daily.0.temperatureMax.short>-8s
+   %<daily.1.temperatureMax.short>-8s
+   %<daily.2.temperatureMax.short>-8s
+   %<daily.3.temperatureMax.short>-8s
+   %<daily.4.temperatureMax.short>-8s
+\\
+%<daily.0.windBearing.short>-3s %<daily.0.windSpeed.short>-7s
+%<daily.1.windBearing.short>-3s %<daily.1.windSpeed.short>-7s
+%<daily.2.windBearing.short>-3s %<daily.2.windSpeed.short>-7s
+%<daily.3.windBearing.short>-3s %<daily.3.windSpeed.short>-7s
+%<daily.4.windBearing.short>-3s %<daily.4.windSpeed.short>-7s
+\\
+Sunrise %{daily.0.sunriseTime.time}   Sunset %{daily.0.sunsetTime.time}
+\\\\
+
+ %<hourly.1.time.time>s |
+ %<hourly.2.time.time>s |
+ %<hourly.3.time.time>s |
+ %<hourly.4.time.time>s |
+ %<hourly.5.time.time>s |
+ %<hourly.6.time.time>s |
+ %<hourly.7.time.time>s |
+ %<hourly.8.time.time>s |
+ %<hourly.9.time.time>s |
+ %<hourly.10.time.time>s |
+ %<hourly.11.time.time>s
+\\
+  %<hourly.1.icon>-5s|
+  %<hourly.2.icon>-5s|
+  %<hourly.3.icon>-5s|
+  %<hourly.4.icon>-5s|
+  %<hourly.5.icon>-5s|
+  %<hourly.6.icon>-5s|
+  %<hourly.7.icon>-5s|
+  %<hourly.8.icon>-5s|
+  %<hourly.9.icon>-5s|
+  %<hourly.10.icon>-5s|
+  %<hourly.11.icon>s
+\\
+ %<hourly.1.temperature.short>-6s|
+ %<hourly.2.temperature.short>-6s|
+ %<hourly.3.temperature.short>-6s|
+ %<hourly.4.temperature.short>-6s|
+ %<hourly.5.temperature.short>-6s|
+ %<hourly.6.temperature.short>-6s|
+ %<hourly.7.temperature.short>-6s|
+ %<hourly.8.temperature.short>-6s|
+ %<hourly.9.temperature.short>-6s|
+ %<hourly.10.temperature.short>-6s|
+ %<hourly.11.temperature.short>s
+\\
+ %<hourly.1.windSpeed.short>-6s|
+ %<hourly.2.windSpeed.short>-6s|
+ %<hourly.3.windSpeed.short>-6s|
+ %<hourly.4.windSpeed.short>-6s|
+ %<hourly.5.windSpeed.short>-6s|
+ %<hourly.6.windSpeed.short>-6s|
+ %<hourly.7.windSpeed.short>-6s|
+ %<hourly.8.windSpeed.short>-6s|
+ %<hourly.9.windSpeed.short>-6s|
+ %<hourly.10.windSpeed.short>-6s|
+ %<hourly.11.windSpeed.short>s
+\\
+ %<hourly.1.windBearing.short>-6s|
+ %<hourly.2.windBearing.short>-6s|
+ %<hourly.3.windBearing.short>-6s|
+ %<hourly.4.windBearing.short>-6s|
+ %<hourly.5.windBearing.short>-6s|
+ %<hourly.6.windBearing.short>-6s|
+ %<hourly.7.windBearing.short>-6s|
+ %<hourly.8.windBearing.short>-6s|
+ %<hourly.9.windBearing.short>-6s|
+ %<hourly.10.windBearing.short>-6s|
+ %<hourly.11.windBearing.short>s
+\\\\
+%{hourly.summary}

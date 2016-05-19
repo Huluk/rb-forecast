@@ -61,13 +61,13 @@ class Forecast
   def initialize(forecast)
     @data = forecast
     @units = @@units[forecast.flags.units]
-    make_flat_data(forecast)
-    @flat_data.default = 'NA'
+    @flat_data = Hash.new
     @options = Hashie::Mash.new()
   end
 
   def print(format)
-    puts format % @flat_data
+    make_flat_data(data)
+    puts format.gsub("\n",'').gsub("\\\\","\n") % @flat_data
   end
 
   def deg_to_compass(degree)
@@ -78,8 +78,8 @@ class Forecast
     @@moon[(phase/0.125).round % 8]
   end
 
-  def bearing(degree)
-    I18n.t "bearing.#{deg_to_compass(degree)}"
+  def bearing(degree, size)
+    I18n.t "bearing.#{deg_to_compass(degree)}.#{size}"
   end
 
   def unit(type)
@@ -87,7 +87,8 @@ class Forecast
   end
 
   def wind(obj)
-    I18n.t('wind') % [obj.windSpeed, unit(:speed), bearing(obj.windBearing)]
+    I18n.t('wind') %
+      [obj.windSpeed, unit(:speed), bearing(obj.windBearing, 'long')]
   end
 
   def alert_messages
@@ -101,7 +102,7 @@ class Forecast
   private
 
   def make_flat_data(forecast)
-    @flat_data = Hash.new(I18n.t('default_value'))
+    @flat_data.default = I18n.t('default_value')
     set_flat_data_defaults if @@set_flat_data_defaults
     recursive_flat_data([], forecast)
   end
@@ -113,12 +114,16 @@ class Forecast
     elsif object.kind_of? Array
       object.each_with_index { |v,i| recursive_flat_data(keys + [i.to_s], v) }
     else
-      key = keys.last
-      @flat_data[to_key(keys)] = case key
+      name = keys.last
+      key = to_key(keys)
+      @flat_data[key] = case name
         when /error\Z/i then percentage(object)
         when /time\Z/i, 'expires' then time(@flat_data, object, keys)
-        when /bearing\Z/i then bearing(object)
-        when @@units_regexp then unit_message(object, $&)
+        when /bearing\Z/i
+          @flat_data[to_key(keys + ['short'])] = bearing(object, 'short')
+          @flat_data[to_key(keys + ['long'])] = bearing(object, 'long')
+          bearing(object, 'long')
+        when @@units_regexp then unit_message(object, $&, keys)
         when 'icon' then @@icons[object]
         when 'moonPhase' then moon(object)
         when 'precipProbability'
@@ -127,10 +132,10 @@ class Forecast
             @flat_data[precipType] = I18n.t('precipitation.default')
           end
           percentage(object)
-        when 'dewPoint' then unit_message(object, :temperature)
+        when 'dewPoint' then unit_message(object, :temperature, keys)
         when 'cloudCover' then percentage(object)
         when 'humidity' then percentage(object)
-        when 'visibility' then unit_message(object, :distance)
+        when 'visibility' then unit_message(object, :distance, keys)
         else object
       end
     end
@@ -171,15 +176,19 @@ class Forecast
     time = Time.at(time)
     time_formats = I18n.backend.__send__(:translations)[:en][:time][:formats]
     default = 'NA'
-    time_formats.each do |name, format|
-      default = time.strftime(format) if name == :default
-      store[to_key(keys+[name])] = time.strftime(format)
+    time_formats.each do |name, _|
+      default = I18n.l(time, {format: name}) if name == :default
+      store[to_key(keys+[name])] = I18n.l(time, {format: name})
     end
     return default
   end
 
-  def unit_message(value, type)
+  def unit_message(value, type, keys=nil)
     type[0] = type[0].downcase if type.kind_of? String
+    if !keys.nil?
+      @flat_data[to_key(keys + ['short'])] =
+        I18n.t('unit_message') % [value.round.to_s, unit(type.to_sym)]
+    end
     I18n.t('unit_message') % [value.to_s, unit(type.to_sym)]
   end
 

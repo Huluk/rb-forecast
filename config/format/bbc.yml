@@ -1,0 +1,5 @@
+---
+language: en
+units: uk2
+storm_warn_distance: 100
+format_file: bbc.txt

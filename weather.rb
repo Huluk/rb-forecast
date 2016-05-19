@@ -6,25 +6,18 @@ require_relative 'geolocation'
 require_relative 'forecast_io'
 
 DEFAULT_OPTIONS = {
-  language: 'en',
-  units: 'auto',
-  storm_warn_distance: 0,
-  save: 0,
-  format_file: File.join(Forecast.data_dir, 'format.txt')
+  'language' => 'en',
+  'units' => 'auto',
+  'storm_warn_distance' => 0,
+  'save' => 0,
+  'config_file' => 'forecast.io.yml'
 }
-CONFIG_FILE = File.join(Forecast.data_dir, 'config.yml')
-
-if File.exist? CONFIG_FILE
-  options = YAML.load(File.read(CONFIG_FILE))
-else
-  $stderr.puts "warning: missing config file at #{CONFIG_FILE}"
-end
 
 SAVE_KEY = 2
 SAVE_LOCATION = 1
 
-options = Hashie::Mash.new(DEFAULT_OPTIONS.merge options)
- 
+options = Hashie::Mash.new
+
 optparse = OptionParser.new do|opts|
   opts.banner = "Usage: #{$0} [options]"
 
@@ -36,12 +29,21 @@ optparse = OptionParser.new do|opts|
     options.location = place
   end
 
-  opts.on('-e', '--long LONG', 'longitude as a decimal') do |lon|
+  opts.on('-e', '--lon LON', 'longitude as a decimal') do |lon|
     options.longitude = long.to_f
   end
 
   opts.on('-n', '--lat LAT', 'latitude as a decimal') do |lat|
     options.latitude = lat.to_f
+  end
+
+  opts.on('-t', '--time TIME',
+          'time expression (single datapoint result)') do |time|
+    options.time = time
+  end
+
+  opts.on('-c', '--config PATH', "path to a config file or `none'") do |path|
+    options.config_file = path
   end
 
   opts.on('-f', '--format PATH', 'path to a format file') do |path|
@@ -71,6 +73,28 @@ optparse = OptionParser.new do|opts|
 end
 
 optparse.parse!
+
+def get_path(path)
+  if File.exist? path
+    return path
+  elsif File.exist? File.join(Forecast.data_dir, 'format', path)
+    return File.join(Forecast.data_dir, 'format', path)
+  else
+    return 'none'
+  end
+end
+
+options.config_file ||= DEFAULT_OPTIONS['config_file']
+options.config_file = get_path(options.config_file)
+if File.exist? options.config_file
+  config = YAML.load(File.read(options.config_file))
+else
+  config = Hash.new
+end
+
+options = Hashie::Mash.new(DEFAULT_OPTIONS.merge(config.merge(options)))
+
+options.format_file = get_path(options.format_file)
 options.location_file = File.join(Forecast.data_dir, 'location')
 options.key_file = File.join(Forecast.data_dir, 'api-key')
 if !options.api_key? && File.exist?(options.key_file)
@@ -96,8 +120,8 @@ validate(options.api_key?,
 validate(options.location? || (options.latitude? && options.longitude?) ||
          File.exist?(options.location_file),
          "please specify location or coordinates!")
-validate(File.exist?(options.format_file),
-         "could not finde format file `#{options.format_file}'!")
+validate(options.format_file? && File.exist?(options.format_file),
+         "could not find format file `#{options.format_file!}'!")
 
 options.format = File.read(options.format_file)
 
@@ -125,7 +149,7 @@ if (options.save & SAVE_LOCATION) != 0
              YAML.dump([options.location!, coords.latitude, coords.longitude]))
 end
 
-forecast = ForecastIO.new(options).forecast(coords)
+forecast = ForecastIO.new(options).forecast(coords, options.time)
 forecast.options = options
 
 puts forecast.print(options.format)

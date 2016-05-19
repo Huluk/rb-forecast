@@ -1,0 +1,6 @@
+---
+language: en
+units: auto
+storm_warn_distance: 100
+minutely: true
+format_file: forecast.io.txt

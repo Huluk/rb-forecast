@@ -1,0 +1,53 @@
+%{position}\\
+%{hourly.0.time.weekday} %{hourly.0.time.hour}\\
+%{hourly.0.icon}  %{hourly.0.temperature}\\\\
+
+Precipitation: %{hourly.0.precipProbability}\\
+Humidity: %{hourly.0.humidity}\\
+Wind: %{hourly.0.windSpeed}\\\\
+
+%<hourly.1.time.hour>-6s
+%<hourly.4.time.hour>-6s
+%<hourly.7.time.hour>-6s
+%<hourly.10.time.hour>-6s
+%<hourly.13.time.hour>-6s
+%<hourly.15.time.hour>-6s
+%<hourly.18.time.hour>-6s
+%<hourly.21.time.hour>s
+\\
+%<hourly.1.temperature.short>-6s
+%<hourly.4.temperature.short>-6s
+%<hourly.7.temperature.short>-6s
+%<hourly.10.temperature.short>-6s
+%<hourly.13.temperature.short>-6s
+%<hourly.15.temperature.short>-6s
+%<hourly.18.temperature.short>-6s
+%<hourly.21.temperature.short>s
+\\\\
+
+%<daily.0.time.wday>-6s
+%<daily.1.time.wday>-6s
+%<daily.2.time.wday>-6s
+%<daily.3.time.wday>-6s
+%<daily.4.time.wday>-6s
+%<daily.5.time.wday>-6s
+%<daily.6.time.wday>-6s
+%<daily.7.time.wday>s
+\\
+ %<daily.0.icon>-5s
+ %<daily.1.icon>-5s
+ %<daily.2.icon>-5s
+ %<daily.3.icon>-5s
+ %<daily.4.icon>-5s
+ %<daily.5.icon>-5s
+ %<daily.6.icon>-5s
+ %<daily.7.icon>s
+\\
+%<daily.0.temperatureMin.short>-6s
+%<daily.1.temperatureMin.short>-6s
+%<daily.2.temperatureMin.short>-6s
+%<daily.3.temperatureMin.short>-6s
+%<daily.4.temperatureMin.short>-6s
+%<daily.5.temperatureMin.short>-6s
+%<daily.6.temperatureMin.short>-6s
+%<daily.7.temperatureMin.short>s

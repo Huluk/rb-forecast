@@ -1,4 +1,0 @@
-%{currently.time}, current weather for %{location}:
-%{currently.summary}, %{currently.temperature} (feels like %{currently.apparentTemperature}) %{hourly.0.precipProbability} %{hourly.0.precipType}, wind %{currently.windSpeed} from %{currently.windBearing}
-
-Today's temperatures: %{daily.0.temperatureMin} to %{daily.0.temperatureMax} at %{daily.0.temperatureMaxTime.time}.

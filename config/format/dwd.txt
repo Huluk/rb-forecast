@@ -1,0 +1,30 @@
+%{position}\\
+Wetterwerte %{currently.time}\\\\
+Wetter         %{currently.icon}  %{currently.summary}\\
+Temperatur     %{currently.temperature.short}\\
+rel. Feuchte   %{currently.humidity}\\
+Wind           %{currently.windBearing.short} %{currently.windSpeed.short}\\
+Luftdruck      %{currently.pressure.short}\\\\
+
+Vorhersage\\
+%<daily.1.time.weekday>-15s %{daily.1.icon}
+  %{daily.1.temperatureMax.short}
+ %{daily.1.windSpeed.short}\\
+%<daily.2.time.weekday>-15s %{daily.2.icon}
+  %{daily.2.temperatureMax.short}
+ %{daily.2.windSpeed.short}\\
+%<daily.3.time.weekday>-15s %{daily.3.icon}
+  %{daily.3.temperatureMax.short}
+ %{daily.3.windSpeed.short}\\
+%<daily.4.time.weekday>-15s %{daily.4.icon}
+  %{daily.4.temperatureMax.short}
+ %{daily.4.windSpeed.short}\\
+%<daily.5.time.weekday>-15s %{daily.5.icon}
+  %{daily.5.temperatureMax.short}
+ %{daily.5.windSpeed.short}\\
+%<daily.6.time.weekday>-15s %{daily.6.icon}
+  %{daily.6.temperatureMax.short}
+ %{daily.6.windSpeed.short}\\
+%<daily.7.time.weekday>-15s %{daily.7.icon}
+  %{daily.7.temperatureMax.short}
+ %{daily.7.windSpeed.short}\\

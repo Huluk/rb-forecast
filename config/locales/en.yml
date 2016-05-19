@@ -7,7 +7,7 @@ en:
     simple:
       with_time: "ALERT [%s]"
       base: ALERT
-  coordinates: "lat: %f, long: %f"
+  coordinates: "lat: %f, lon: %f"
   wind: "Wind: %.0f %s from %s"
   default_value: "N/A"
   precipitation:
@@ -23,7 +23,7 @@ en:
     in/h: in/h
     in: in
     °F: °F
-    miles/h: miles/h
+    miles/h: mph
     mbar: mbar
     DU: DU
     km: km
@@ -34,26 +34,61 @@ en:
     hPa: hPa
     km/h: km/h
   bearing:
-    E: east
-    W: west
-    N: north
-    S: south
-    NW: north-west
-    SW: south-west
-    NE: north-east
-    SE: south-east
-    WNW: west north-west
-    WSW: west south-west
-    ENE: east north-east
-    ESE: east south-east
-    NNW: north north-west
-    SSW: south south-west
-    NNE: north north-east
-    SSE: south south-east
+    E:
+      short: E
+      long: east
+    W:
+      short: W
+      long: west
+    N:
+      short: N
+      long: north
+    S:
+      short: S
+      long: south
+    NW:
+      short: NW
+      long: north-west
+    SW:
+      short: SW
+      long: south-west
+    NE:
+      short: NE
+      long: north-east
+    SE:
+      short: SE
+      long: south-east
+    WNW:
+      short: WNW
+      long: west north-west
+    WSW:
+      short: WSW
+      long: west south-west
+    ENE:
+      short: ENE
+      long: east north-east
+    ESE:
+      short: ESE
+      long: east south-east
+    NNW:
+      short: NNW
+      long: north north-west
+    SSW:
+      short: SSW
+      long: south south-west
+    NNE:
+      short: NNE
+      long: north north-east
+    SSE:
+      short: SSE
+      long: south south-east
   time:
     am: am
     formats:
+      weekday: "%A"
+      wday: "%a"
       time: "%R"
+      hour: "%-l %p"
       date: "%a, %-d %B"
       default: "%a, %-d %B %R %Z"
       rails_default: "%a, %d %b %Y %H:%M:%S %z"

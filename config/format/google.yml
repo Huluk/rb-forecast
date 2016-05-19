@@ -1,0 +1,5 @@
+---
+language: en
+units: auto
+storm_warn_distance: 100
+format_file: google.txt

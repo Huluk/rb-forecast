@@ -1,0 +1,5 @@
+---
+language: de
+units: ca
+storm_warn_distance: 100
+format_file: dwd.txt
