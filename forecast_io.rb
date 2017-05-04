@@ -7,7 +7,7 @@ require_relative 'forecast'
 # gem does not zip data (more data sent, cannot use hourly 7 day forecasts)
 # and all web handling is the same for geocoding api anyway
 class ForecastIO < JsonAPI
-  URL = "https://api.forecast.io/forecast/%s/%f,%f%s"
+  URL = "https://api.darksky.net/forecast/%s/%f,%f%s"
   HOUR = 3600
 
   attr_reader :params
